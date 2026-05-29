@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 const Feed = () => {
   const [posts, setPosts] = useState([
@@ -11,9 +11,10 @@ const Feed = () => {
   ]);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/posts")
-    .then((res) => {
-      
+
+const api = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
+    axios.get(`${api}/posts`).then((res) => {
       setPosts(res.data.posts);
     });
   }, []);

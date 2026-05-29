@@ -8,7 +8,9 @@ const CreatePost = () => {
 
     const formData = new FormData(e.target);
 
-    axios.post("http://localhost:3000/create-post", formData).then((res) => {
+    const api=import.meta.env.VITE_API_URL || "http://localhost:3000";
+
+    axios.post(`${api}/create-post`, formData).then((res) => {
       navigate("/feed");
     });
   };
